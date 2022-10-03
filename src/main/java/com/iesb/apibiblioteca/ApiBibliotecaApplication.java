@@ -17,3 +17,8 @@ public class ApiBibliotecaApplication {
         return new BCryptPasswordEncoder();
     }
 }
+
+
+
+
+
