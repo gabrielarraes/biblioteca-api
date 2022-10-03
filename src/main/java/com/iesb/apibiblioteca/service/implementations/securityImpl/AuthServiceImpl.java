@@ -35,10 +35,10 @@ public class AuthServiceImpl implements AuthService {
             throw new IllegalStateException(exception.getMessage());
         }
 
-        User usuario = (User) userDetailsService.loadUserByUsername(signInRequest.getUsername());
+        User user = (User) userDetailsService.loadUserByUsername(signInRequest.getUsername());
 
-        String token = jwtImpl.generateToken(usuario);
+        String token = jwtImpl.generateToken(user);
 
-        return new JwtAuthResponse(usuario,token);
+        return new JwtAuthResponse(user, token);
     }
 }

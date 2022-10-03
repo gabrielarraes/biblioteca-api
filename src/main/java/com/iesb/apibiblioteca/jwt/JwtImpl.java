@@ -17,7 +17,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
-public class JwtImpl implements Serializable{
+public class JwtImpl implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 234234531333L;

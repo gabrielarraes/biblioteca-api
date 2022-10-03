@@ -1,7 +1,10 @@
 package com.iesb.apibiblioteca.dto.book;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.iesb.apibiblioteca.dto.user.UserDTO;
 import com.iesb.apibiblioteca.model.book.Book;
 import com.iesb.apibiblioteca.model.security.User;
+import org.springframework.lang.Nullable;
 
 import java.io.Serializable;
 
@@ -13,7 +16,11 @@ public class BookDTO implements Serializable {
     private String language;
     private String author;
     private String publishingCompany;
-    private User user;
+
+    @Nullable
+    private UserDTO user;
+
+    public BookDTO() { }
 
     public BookDTO(final Book book) {
         pages = book.getPages();
@@ -22,7 +29,14 @@ public class BookDTO implements Serializable {
         language = book.getLanguage();
         author = book.getAuthor();
         publishingCompany = book.getPublishingCompany();
-        user = book.getUser();
+        user = book.getUser() != null ? buildUserDTO(book.getUser()) : null;
+    }
+
+    private UserDTO buildUserDTO(User user) {
+        UserDTO dto = new UserDTO();
+        dto.setUsername(user.getUsername());
+        dto.setEmail(user.getEmail());
+        return dto;
     }
 
     public Long getPages() {
@@ -73,11 +87,11 @@ public class BookDTO implements Serializable {
         this.publishingCompany = publishingCompany;
     }
 
-    public User getUser() {
+    public UserDTO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDTO user) {
         this.user = user;
     }
 }

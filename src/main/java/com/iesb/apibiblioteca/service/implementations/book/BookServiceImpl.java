@@ -4,7 +4,9 @@ import com.iesb.apibiblioteca.dto.book.BookDTO;
 import com.iesb.apibiblioteca.exception.ResourceNotFoundException;
 import com.iesb.apibiblioteca.model.book.Book;
 import com.iesb.apibiblioteca.model.builder.book.BookBuilder;
+import com.iesb.apibiblioteca.model.security.User;
 import com.iesb.apibiblioteca.repository.BookRepository;
+import com.iesb.apibiblioteca.repository.UserRepository;
 import com.iesb.apibiblioteca.service.book.BookService;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,11 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepo;
+    private final UserRepository userRepo;
 
-    public BookServiceImpl(BookRepository bookRepo) {
+    public BookServiceImpl(BookRepository bookRepo, UserRepository userRepo) {
        this.bookRepo = bookRepo;
+       this.userRepo = userRepo;
     }
 
     @Override
@@ -39,7 +43,14 @@ public class BookServiceImpl implements BookService {
     public BookDTO updateBook(Long id,BookDTO bookDTO) {
         Book book = bookRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book Not Found."));
 
-        book.setUser(bookDTO.getUser());
+        if(book.getUser() != null) {
+            User u = userRepo.findByUsername(book.getUser().getUsername())
+                    .orElseThrow(() -> new ResourceNotFoundException("Invalid User"));
+            book.setUser(u);
+        } else {
+            book.setUser(null);
+        }
+
         book.setPublishingCompany(bookDTO.getPublishingCompany());
         book.setLanguage(bookDTO.getLanguage());
         book.setAuthor(bookDTO.getAuthor());
