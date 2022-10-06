@@ -1,4 +1,4 @@
-package com.iesb.apibiblioteca.controller.user;
+package com.iesb.apibiblioteca.dto.controller.user;
 
 import com.iesb.apibiblioteca.dto.user.UserDTO;
 import com.iesb.apibiblioteca.dto.user.UserDTOResponse;

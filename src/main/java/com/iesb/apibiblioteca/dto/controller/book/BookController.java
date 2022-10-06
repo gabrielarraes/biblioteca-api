@@ -1,4 +1,4 @@
-package com.iesb.apibiblioteca.controller.book;
+package com.iesb.apibiblioteca.dto.controller.book;
 
 import com.iesb.apibiblioteca.dto.book.BookDTO;
 import com.iesb.apibiblioteca.service.book.BookService;

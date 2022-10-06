@@ -1,4 +1,4 @@
-package com.iesb.apibiblioteca.controller.auth;
+package com.iesb.apibiblioteca.dto.controller.auth;
 
 import com.iesb.apibiblioteca.payload.request.auth.SignInRequest;
 import com.iesb.apibiblioteca.payload.response.auth.JwtAuthResponse;
