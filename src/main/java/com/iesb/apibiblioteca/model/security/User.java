@@ -8,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,8 +26,8 @@ public class User implements UserDetails {
     @Column(name = "username")
     private String username;
 
-    @NotBlank(message = "The email cannot be blank")
-    @Email(message = "Invalid email address")
+    @NotBlank(message = "Email não pode ser nulo")
+    @Email(message = "Email Inválido")
     @Column(name = "email")
     private String email;
 

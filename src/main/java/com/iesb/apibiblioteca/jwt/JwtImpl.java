@@ -22,7 +22,7 @@ public class JwtImpl implements Serializable {
     @Serial
     private static final long serialVersionUID = 234234531333L;
 
-    public long JWT_TOKEN_VALIDITY = 60 * 60 * 24;
+    public long JWT_TOKEN_VALIDITY = 60 * 60;
 
     private final String secretKey = "SECRET_KEY";
 
@@ -36,7 +36,6 @@ public class JwtImpl implements Serializable {
 
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaimsFromToken(token);
-
         return claimsResolver.apply(claims);
     }
 
