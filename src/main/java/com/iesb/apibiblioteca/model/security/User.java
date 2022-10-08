@@ -5,6 +5,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +27,8 @@ public class User implements UserDetails {
     @Column(name = "username")
     private String username;
 
+    @NotBlank(message = "The email cannot be blank")
+    @Email(message = "Invalid email address")
     @Column(name = "email")
     private String email;
 

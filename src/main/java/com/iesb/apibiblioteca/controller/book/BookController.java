@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api/book")
 @RestController
 public class BookController {
-
+//localhost:8080/api/book
     private final BookService bookService;
 
     public BookController(BookService bookService) {

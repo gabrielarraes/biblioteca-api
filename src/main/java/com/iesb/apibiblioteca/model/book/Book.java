@@ -32,7 +32,7 @@ public class Book {
     @Column(name = "publishing_company")
     private String publishingCompany;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     @Nullable
     private User user;

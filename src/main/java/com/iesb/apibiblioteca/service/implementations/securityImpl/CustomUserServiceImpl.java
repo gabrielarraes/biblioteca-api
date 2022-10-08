@@ -3,8 +3,11 @@ package com.iesb.apibiblioteca.service.implementations.securityImpl;
 import com.iesb.apibiblioteca.dto.user.UserDTO;
 import com.iesb.apibiblioteca.dto.user.UserDTOResponse;
 import com.iesb.apibiblioteca.exception.AlreadyExistsException;
+import com.iesb.apibiblioteca.exception.ResourceNotFoundException;
 import com.iesb.apibiblioteca.model.security.Role;
 import com.iesb.apibiblioteca.model.security.User;
+import com.iesb.apibiblioteca.payload.request.user.ResetPasswordRequest;
+import com.iesb.apibiblioteca.payload.response.generic.GenericResponse;
 import com.iesb.apibiblioteca.repository.RoleRepository;
 import com.iesb.apibiblioteca.repository.UserRepository;
 import com.iesb.apibiblioteca.service.security.UserService;
@@ -50,6 +53,16 @@ public class CustomUserServiceImpl implements UserService {
         uDTO.setId(u.getId());
 
         return uDTO;
+    }
+
+    @Override
+    public GenericResponse updateUserPassword(ResetPasswordRequest request) {
+        User u = userRepo.findByEmail(request.getEmail()).orElseThrow(ResourceNotFoundException::new);
+
+        u.setPassword(passwordEncoder.encode(request.getPassword()));
+        userRepo.save(u);
+
+        return new GenericResponse("Senha Alterada com sucesso!");
     }
 
     public Set<Role> setDefaultRole() {
