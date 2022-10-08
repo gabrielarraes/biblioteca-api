@@ -1,4 +1,4 @@
-# Biblioteca API
+# :books: Biblioteca API
 #### <p>O intuito dessa API e de criar uma interfaçe que simule o funcionamento de uma biblioteca.</p>
 
 <br/>
@@ -7,8 +7,8 @@
 <br/>
 <br/>
 
-## Índice
-• [Ambiente De Desenvolvedor](#Ambiente-De-Desenvolvedor)
+## :pushpin: Índice
+• [Instação](#Instalação)
 <br/>
 • [Pré-requisitos](#pré-requisitos)
 <br/>
@@ -17,7 +17,7 @@
 • [Configuração](#Configuração)
 <br/>
 <br/>
-## Começando
+## :checkered_flag: Começando
 
 
 <br/>
@@ -31,23 +31,34 @@
 <br/>
 <br/>
 
-## Ambiente De Desenvolvedor
+
+## :bar_chart: Status da API
+Em desenvolvimento:
+
+- [x] Criaçao de usúario
+- [x] Registro de autor
+- [x] Registro de livros
+
+## :arrow_down_small: Instalação
 
 <br/>
-• Intellij IDEA (Opcional - https://www.jetbrains.com/pt-br/idea/download)<br/>
-• MySQL (https://dev.mysql.com/downloads/)
+ • Intellij IDEA (Opcional - https://www.jetbrains.com/pt-br/idea/download)<br/>
+ • MySQL (https://dev.mysql.com/downloads/)
 <br/>
-• SpringBoot (https://spring.io/projects/spring-boot)
+ • SpringBoot (https://spring.io/projects/spring-boot)
 <br/>
 • Maven (https://www.jetbrains.com/help/idea/maven-support.html)
 <br/>
 <br/>
 
-## pré-requisitos
+## :mag: pré-requisitos
+• Um software que consiga compilar a línguagem java
+<br/>
+• Um sofware de banco de dados que se relacione com java
 <br/>
 <br/>
 
-## Configuração
+## :wrench: Configuração
 
 Para executar o projeto, é necessarário Utilizar o Intellij IDEA, pois ele ira indetificar as dependências e implementá-las.
 
@@ -57,6 +68,15 @@ Já com o intellij aberto com o projeto, abre a tabela **_Database_** ao canto d
 <br/>
 <br/>
 
-## Features
+## :file_folder: Features
 
 O projeto é inicializado atraves da IDE, usando a teclado atalho **_shift + f10_**. Posteriormente, abra o bowser, acesse https://localhost:8080
+
+## :pushpin: Contribuição
+   • Átila
+   <br/>
+   • Gabriel
+   <br/>
+   • Patrick
+   <br/>
+   • Ronan
