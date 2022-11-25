@@ -5,6 +5,7 @@ import com.iesb.apibiblioteca.exception.ResourceNotFoundException;
 import com.iesb.apibiblioteca.model.book.Book;
 import com.iesb.apibiblioteca.model.builder.book.BookBuilder;
 import com.iesb.apibiblioteca.model.security.User;
+import com.iesb.apibiblioteca.payload.request.book.RentRequest;
 import com.iesb.apibiblioteca.repository.BookRepository;
 import com.iesb.apibiblioteca.repository.UserRepository;
 import com.iesb.apibiblioteca.service.book.BookService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -72,7 +74,45 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookDTO> getAllBooks() {
         List<Book> books = bookRepo.findAll();
+
+        return convertList(books);
+    }
+
+    @Override
+    public List<BookDTO> getAllBooksByCategoryId(Long id) {
+        List<Book> books = bookRepo.findAllByCategoryId(id);
+
+        return convertList(books);
+    }
+
+    @Override
+    public List<BookDTO> getAllBooksByCategoryName(String name) {
+        List<Book> books = bookRepo.findAllByCategoryName(name);
+
+        return convertList(books);
+    }
+
+    @Override
+    public BookDTO rentBook(RentRequest request) {
+        Book b = bookRepo.getById(request.getBookId());
+        User us = userRepo.getById(request.getUserId());
+
+        b.setUser(us);
+        b.setIsRented(true);
+
+        bookRepo.save(b);
+
+        return new BookDTO(b);
+    }
+
+    @Override
+    public List<BookDTO> getAllUserBooks(Long userId) {
+        return convertList(bookRepo.findAllByUserId(userId));
+    }
+
+    private List<BookDTO> convertList(List<Book> books) {
         List<BookDTO> booksDto = new ArrayList<>();
+
         if(!books.isEmpty()) {
             for(Book b : books) {
                 booksDto.add(new BookDTO(b));
@@ -80,4 +120,6 @@ public class BookServiceImpl implements BookService {
         }
         return booksDto;
     }
+
+
 }

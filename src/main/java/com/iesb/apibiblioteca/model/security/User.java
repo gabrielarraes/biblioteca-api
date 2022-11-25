@@ -73,7 +73,7 @@ public class User implements UserDetails {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {

@@ -1,9 +1,12 @@
 package com.iesb.apibiblioteca.model.book;
 
+import com.iesb.apibiblioteca.model.category.Category;
 import com.iesb.apibiblioteca.model.security.User;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "book")
@@ -28,6 +31,14 @@ public class Book {
 
     @Column(name = "author")
     private String author;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "book_categories",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories;
 
     @Column(name = "publishing_company")
     private String publishingCompany;
